@@ -1,8 +1,8 @@
 package pl.cinema.SilverScreen;
 
 public class Seat {
-    int numberSeat;
-    boolean vip;
+    private int numberSeat;
+    private boolean vip;
 
     public Seat(int numberSeat, boolean vip) {
         this.numberSeat = numberSeat;
