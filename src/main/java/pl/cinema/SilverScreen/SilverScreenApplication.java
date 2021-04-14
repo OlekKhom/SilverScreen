@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @SpringBootApplication
 public class SilverScreenApplication {
@@ -14,18 +15,33 @@ public class SilverScreenApplication {
 	}
 
 	@Autowired
-	private TicketRepository ticketRepository;
+	TicketRepository ticketRepository;
 
 	@Autowired
-	private FilmRepository filmRepository;
+	FilmRepository filmRepository;
 
 	@Autowired
-	private MoviesRoomRepository moviesRoomRepository;
+	MoviesRoomRepository moviesRoomRepository;
+
+	@Autowired
+	ClientRepository clientRepository;
 
 	@PostConstruct
 	public void test(){
-		ticketRepository.save(new Ticket(0,10, 23.5, new Client("Marta", 234234)));
-		filmRepository.save(new Film(0,"Man X", "Hugh Michael Jackman", 2019, 107));
-		moviesRoomRepository.save(new MoviesRoom(0, 2, 48, "Beats 6D"));
+
+		Ticket ticket1 = ticketRepository.save(new Ticket(0, 15, 20));
+		Ticket ticket2 = ticketRepository.save(new Ticket(0, 20, 35));
+		Ticket ticket3 = ticketRepository.save(new Ticket(0, 25, 25));
+
+		Client client1 = clientRepository.save(
+				new Client(0, "Tom", 123456, List.of(ticket1, ticket2, ticket3))
+		);
+
+		ticket1.setClient(client1);
+		ticket2.setClient(client1);
+		ticket3.setClient(client1);
+		ticketRepository.save(ticket1);
+		ticketRepository.save(ticket2);
+		ticketRepository.save(ticket3);
 	}
 }

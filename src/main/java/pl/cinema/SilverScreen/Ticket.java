@@ -1,29 +1,27 @@
 package pl.cinema.SilverScreen;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private long id;
     private int number;
     private double price;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
 
     public Ticket() {
     }
 
-    public Ticket(long id, int number, double price, Client client) {
+    public Ticket(long id, int number, double price) {
         this.id = id;
         this.number = number;
         this.price = price;
-        this.client = client;
     }
-
 
     public long getId() {
         return id;
@@ -50,11 +48,11 @@ public class Ticket {
         this.price = price;
     }
 
-    public Client getKlient() {
+    public Client getClient() {
         return client;
     }
 
-    public Ticket setKlient(Client client) {
+    public Ticket setClient(Client client) {
         this.client = client;
         return this;
     }

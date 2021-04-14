@@ -1,9 +1,6 @@
 package pl.cinema.SilverScreen;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Film {
@@ -64,5 +61,13 @@ public class Film {
     public Film setTimeFilmsMinute(int timeFilmsMinute) {
         this.timeFilmsMinute = timeFilmsMinute;
         return this;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
