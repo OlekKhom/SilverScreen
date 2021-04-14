@@ -1,35 +1,50 @@
 package pl.cinema.SilverScreen;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
+import java.util.List;
 
-@Embeddable
+@Entity
 public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
+    private long id;
     private String name;
     private int password;
+    @OneToMany
+    List<Ticket> tickets;
 
     public Client() {
     }
 
-    public Client(String name, int password) {
+    public Client(long id, String name, int password, List<Ticket> tickets) {
+        this.id = id;
         this.name = name;
         this.password = password;
+        this.tickets = tickets;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public Client setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public int getPassword() {
         return password;
     }
 
-    public Client setPassword(int password) {
+    public void setPassword(int password) {
         this.password = password;
-        return this;
     }
 }
