@@ -12,15 +12,18 @@ public class Ticket {
     private long id;
     private int number;
     private double price;
+    private Client client;
 
     public Ticket() {
     }
 
-    public Ticket(long id, int number, double price) {
+    public Ticket(long id, int number, double price, Client client) {
         this.id = id;
         this.number = number;
         this.price = price;
+        this.client = client;
     }
+
 
     public long getId() {
         return id;
@@ -47,4 +50,12 @@ public class Ticket {
         this.price = price;
     }
 
+    public Client getKlient() {
+        return client;
+    }
+
+    public Ticket setKlient(Client client) {
+        this.client = client;
+        return this;
+    }
 }
