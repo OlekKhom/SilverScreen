@@ -1,4 +1,6 @@
-package pl.cinema.SilverScreen;
+package pl.cinema.SilverScreen.Client;
+
+import pl.cinema.SilverScreen.Ticket.Ticket;
 
 import javax.persistence.*;
 import java.util.List;

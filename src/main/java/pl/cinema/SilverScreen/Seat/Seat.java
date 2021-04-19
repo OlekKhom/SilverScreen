@@ -1,4 +1,4 @@
-package pl.cinema.SilverScreen;
+package pl.cinema.SilverScreen.Seat;
 
 public class Seat {
     private int numberSeat;

@@ -1,4 +1,4 @@
-package pl.cinema.SilverScreen;
+package pl.cinema.SilverScreen.MoviesRoom;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
