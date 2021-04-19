@@ -1,4 +1,4 @@
-package pl.cinema.SilverScreen;
+package pl.cinema.SilverScreen.Film;
 
 import javax.persistence.*;
 
