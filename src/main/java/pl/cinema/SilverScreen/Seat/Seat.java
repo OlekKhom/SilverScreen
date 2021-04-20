@@ -1,14 +1,12 @@
 package pl.cinema.SilverScreen.Seat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private long id;
     private int numberSeat;
     private boolean vip;
