@@ -58,4 +58,14 @@ public class Ticket {
         this.client = client;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", number=" + number +
+                ", price=" + price +
+                ", client=" + client +
+                '}';
+    }
 }
