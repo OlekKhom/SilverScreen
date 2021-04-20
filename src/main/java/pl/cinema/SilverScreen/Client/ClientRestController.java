@@ -10,17 +10,4 @@ public class ClientRestController {
     @Autowired
     ClientRepository clientRepository;
 
-    /*
-
-    @GetMapping("/clientName/{name}")
-    public String clientGetter(@PathVariable String name) {
-
-    }
-
-    @PutMapping("/client")
-    public String clientDetails(@PathVariable String name) {
-        return "Name: " + name;
-    }
-
-     */
 }

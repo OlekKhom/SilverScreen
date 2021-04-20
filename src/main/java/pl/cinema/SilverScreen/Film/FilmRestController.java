@@ -18,5 +18,4 @@ public class FilmRestController {
     public String filmPost (@PathVariable String name, @RequestParam String mainActor, @RequestParam int releaseYear){
         return name + " " + mainActor + " " + releaseYear;
     }
-
 }
