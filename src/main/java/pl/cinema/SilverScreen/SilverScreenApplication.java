@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import pl.cinema.SilverScreen.Client.Client;
 import pl.cinema.SilverScreen.Client.ClientRepository;
 import pl.cinema.SilverScreen.Film.FilmRepository;
+import pl.cinema.SilverScreen.MoviesRoom.MoviesRoom;
 import pl.cinema.SilverScreen.MoviesRoom.MoviesRoomRepository;
 import pl.cinema.SilverScreen.Ticket.Ticket;
 import pl.cinema.SilverScreen.Ticket.TicketRepository;

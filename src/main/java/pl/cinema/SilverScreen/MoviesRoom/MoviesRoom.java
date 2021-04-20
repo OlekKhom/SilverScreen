@@ -14,6 +14,7 @@ public class MoviesRoom {
     private int seats;
     private String SoundTyp;
 
+
     public MoviesRoom() {
     }
 
@@ -58,5 +59,15 @@ public class MoviesRoom {
     public MoviesRoom setSoundTyp(String soundTyp) {
         SoundTyp = soundTyp;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "MoviesRoom{" +
+                "id=" + id +
+                ", numberRoom=" + numberRoom +
+                ", seats=" + seats +
+                ", SoundTyp='" + SoundTyp + '\'' +
+                '}';
     }
 }
