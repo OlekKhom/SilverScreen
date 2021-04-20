@@ -18,5 +18,6 @@ public class TicketRestController {
         Ticket ticket = new Ticket(1, number, price);
         MoviesRoom mrg = new MoviesRoom(4, room, 15, "Beat2D");
         return "MoviesRoom: " + mrg.toString() + " and ticket: " + ticket.toString();
+
     }
 }
