@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 public class TicketRestController {
+
     @Autowired
     TicketRepository ticketRepository;
 

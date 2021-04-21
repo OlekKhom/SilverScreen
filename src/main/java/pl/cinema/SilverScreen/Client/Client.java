@@ -19,6 +19,12 @@ public class Client {
     public Client() {
     }
 
+    public Client(long id, String name, int password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
+
     public Client(long id, String name, int password, List<Ticket> tickets) {
         this.id = id;
         this.name = name;
