@@ -12,8 +12,14 @@ public class ClientRestController {
 
     @PutMapping("/client/{name}")
     public String clientDetails(@PathVariable String name, @RequestParam int password) {
-        return "Name: " + name + ". Password: " + password + ".";
+        Client client1 = new Client(0, "Tom", 1234);
+        if (client1.getName().equals(name) && client1.getPassword() == password) {
+            return "Welcome " + name;
+        } else {
+            return "Wrong password or name";
+        }
     }
+
     @GetMapping("/client/{name}")
     public String clientGetter(@PathVariable String name) {
         return name;

@@ -25,6 +25,13 @@ public class Ticket {
         this.price = price;
     }
 
+    public Ticket(long id, int number, double price, Client client) {
+        this.id = id;
+        this.number = number;
+        this.price = price;
+        this.client = client;
+    }
+
     public long getId() {
         return id;
     }
