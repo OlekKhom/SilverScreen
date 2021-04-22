@@ -1,6 +1,9 @@
 package pl.cinema.SilverScreen.Film;
 
+import pl.cinema.SilverScreen.Ticket.Ticket;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Film {
@@ -11,6 +14,8 @@ public class Film {
     private String mainActor;
     private int releaseYear;
     private int timeFilmsMinute;
+    @OneToMany
+    List<Ticket> tickets;
 
     public Film() {
     }
@@ -21,6 +26,15 @@ public class Film {
         this.mainActor = mainActor;
         this.releaseYear = releaseYear;
         this.timeFilmsMinute = timeFilmsMinute;
+    }
+
+    public Film(long id, String name, String mainActor, int releaseYear, int timeFilmsMinute, List<Ticket> tickets) {
+        this.id = id;
+        this.name = name;
+        this.mainActor = mainActor;
+        this.releaseYear = releaseYear;
+        this.timeFilmsMinute = timeFilmsMinute;
+        this.tickets = tickets;
     }
 
     public Film(long id) {

@@ -1,6 +1,7 @@
 package pl.cinema.SilverScreen.Ticket;
 
 import pl.cinema.SilverScreen.Client.Client;
+import pl.cinema.SilverScreen.Film.Film;
 
 import javax.persistence.*;
 
@@ -15,6 +16,9 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
+    @ManyToOne
+    @JoinColumn(name = "film_id")
+    private Film film;
 
     public Ticket() {
     }
@@ -30,6 +34,13 @@ public class Ticket {
         this.number = number;
         this.price = price;
         this.client = client;
+    }
+
+    public Ticket(long id, int number, double price, Film film) {
+        this.id = id;
+        this.number = number;
+        this.price = price;
+        this.film = film;
     }
 
     public long getId() {
@@ -64,6 +75,14 @@ public class Ticket {
     public Ticket setClient(Client client) {
         this.client = client;
         return this;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
     }
 
     @Override
