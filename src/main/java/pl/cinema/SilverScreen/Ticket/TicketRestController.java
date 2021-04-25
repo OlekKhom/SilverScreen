@@ -2,17 +2,50 @@ package pl.cinema.SilverScreen.Ticket;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.cinema.SilverScreen.Client.model.Client;
+import pl.cinema.SilverScreen.Client.model.ClientHttpResponse;
+import pl.cinema.SilverScreen.Client.model.ClientMapper;
 import pl.cinema.SilverScreen.MoviesRoom.MoviesRoom;
-import pl.cinema.SilverScreen.MoviesRoom.MoviesRoomRepository;
+import pl.cinema.SilverScreen.Ticket.model.Ticket;
+import pl.cinema.SilverScreen.Ticket.model.TicketHttpRequest;
+import pl.cinema.SilverScreen.Ticket.model.TicketHttpResponse;
+import pl.cinema.SilverScreen.Ticket.model.TicketMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class TicketRestController {
 
+    TicketService ticketService;
+
     @Autowired
-    TicketRepository ticketRepository;
+    public TicketRestController(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
+
+    @GetMapping("/tickets/{id}")
+    public TicketHttpResponse getTicket(@PathVariable long id) {
+        return ticketService.getTicket(id);
+    }
+
+    @GetMapping("/tickets")
+    public List<TicketHttpResponse> getAllTickets() {
+        return ticketService.getAllTickets();
+    }
+
+    @PostMapping("/tickets")
+    public String create (@RequestBody TicketHttpRequest request) {
+        return ticketService.create(request);
+    }
+
+    @PutMapping("/ticket/{id}")
+    public String update (@PathVariable long id, @RequestBody TicketHttpRequest request) {
+        return  ticketService.update(id, request);
+    }
+
+
+
+    /*
 
     @PostMapping("/ticket/{number}")
     public String ticketPost(@PathVariable int number, @RequestParam double price, @RequestParam int room ) {
@@ -21,4 +54,6 @@ public class TicketRestController {
         return "MoviesRoom: " + mrg.toString() + " and ticket: " + ticket.toString();
 
     }
+
+     */
 }

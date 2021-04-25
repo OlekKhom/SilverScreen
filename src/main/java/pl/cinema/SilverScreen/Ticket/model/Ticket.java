@@ -1,6 +1,6 @@
-package pl.cinema.SilverScreen.Ticket;
+package pl.cinema.SilverScreen.Ticket.model;
 
-import pl.cinema.SilverScreen.Client.Client;
+import pl.cinema.SilverScreen.Client.model.Client;
 import pl.cinema.SilverScreen.Film.Film;
 import pl.cinema.SilverScreen.Seat.Seat;
 
@@ -111,5 +111,62 @@ public class Ticket {
                 ", price=" + price +
                 ", client=" + client +
                 '}';
+    }
+
+    public static TicketBuilder builder() {
+        return new TicketBuilder();
+    }
+
+    public static final class TicketBuilder {
+        private long id;
+        private int number;
+        private double price;
+        private Client client;
+        private Film film;
+        private Seat seat;
+
+        private TicketBuilder() {
+        }
+
+        public TicketBuilder id(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public TicketBuilder number(int number) {
+            this.number = number;
+            return this;
+        }
+
+        public TicketBuilder price(double price) {
+            this.price = price;
+            return this;
+        }
+
+        public TicketBuilder client(Client client) {
+            this.client = client;
+            return this;
+        }
+
+        public TicketBuilder film(Film film) {
+            this.film = film;
+            return this;
+        }
+
+        public TicketBuilder seat(Seat seat) {
+            this.seat = seat;
+            return this;
+        }
+
+        public Ticket build() {
+            Ticket ticket = new Ticket();
+            ticket.setId(id);
+            ticket.setNumber(number);
+            ticket.setPrice(price);
+            ticket.setClient(client);
+            ticket.setFilm(film);
+            ticket.setSeat(seat);
+            return ticket;
+        }
     }
 }

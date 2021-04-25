@@ -1,6 +1,6 @@
 package pl.cinema.SilverScreen.Seat;
 
-import pl.cinema.SilverScreen.Ticket.Ticket;
+import pl.cinema.SilverScreen.Ticket.model.Ticket;
 
 import javax.persistence.*;
 
