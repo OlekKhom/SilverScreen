@@ -8,7 +8,11 @@ import pl.cinema.SilverScreen.Ticket.model.TicketHttpResponse;
 import pl.cinema.SilverScreen.Ticket.model.TicketMapper;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.StreamSupport.stream;
 
 @Service
 public class TicketService {
@@ -53,13 +57,25 @@ public class TicketService {
     }
 
     public List<TicketHttpResponse> getAllTickets() {
+        return stream(ticketRepository.findAll().spliterator(), false)
+                .map(x -> TicketMapper.map(x))
+                .collect(Collectors.toList());
+
+    }
+
+        /*
+
+    public List<TicketHttpResponse> getAllTickets() {
         Iterable<Ticket> tickets = ticketRepository.findAll();
         List<TicketHttpResponse> responseTickets = new ArrayList<>();
         for (Ticket ticket : tickets) {
             responseTickets.add(TicketMapper.map(ticket));
         }
         return responseTickets;
+
     }
+
+         */
 
     public boolean delete(long id) {
         if (ticketRepository.existsById(id)) {

@@ -1,5 +1,6 @@
 package pl.cinema.SilverScreen.Ticket.model;
 
+import lombok.*;
 import pl.cinema.SilverScreen.Client.model.Client;
 import pl.cinema.SilverScreen.Film.Film;
 import pl.cinema.SilverScreen.Seat.Seat;
@@ -7,6 +8,12 @@ import pl.cinema.SilverScreen.Seat.Seat;
 import javax.persistence.*;
 
 @Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +30,12 @@ public class Ticket {
     @OneToOne
     private Seat seat;
 
+    /*
+
     public Ticket() {
     }
+
+     */
 
     public Ticket(long id, int number, double price) {
         this.id = id;
@@ -52,6 +63,8 @@ public class Ticket {
         this.price = price;
         this.seat = seat;
     }
+
+    /*
 
     public long getId() {
         return id;
@@ -103,6 +116,10 @@ public class Ticket {
         this.seat = seat;
     }
 
+     */
+
+    /*
+
     @Override
     public String toString() {
         return "Ticket{" +
@@ -112,6 +129,10 @@ public class Ticket {
                 ", client=" + client +
                 '}';
     }
+
+     */
+
+    /*
 
     public static TicketBuilder builder() {
         return new TicketBuilder();
@@ -169,4 +190,6 @@ public class Ticket {
             return ticket;
         }
     }
+
+     */
 }
