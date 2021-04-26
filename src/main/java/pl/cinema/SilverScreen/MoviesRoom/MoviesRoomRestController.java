@@ -2,11 +2,6 @@ package pl.cinema.SilverScreen.MoviesRoom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.cinema.SilverScreen.Client.Client;
-import pl.cinema.SilverScreen.Client.ClientRepository;
-import pl.cinema.SilverScreen.Film.FilmRepository;
-import pl.cinema.SilverScreen.Ticket.Ticket;
-import pl.cinema.SilverScreen.Ticket.TicketRepository;
 
 import java.util.ArrayList;
 import java.util.List;
