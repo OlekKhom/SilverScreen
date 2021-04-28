@@ -1,9 +1,12 @@
 package pl.cinema.SilverScreen.MoviesRoom;
 
+import pl.cinema.SilverScreen.Film.Film;
 import pl.cinema.SilverScreen.Ticket.model.Ticket;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class MoviesRoom {
@@ -15,6 +18,14 @@ public class MoviesRoom {
     private String SoundTyp;
     @OneToMany
     List<Ticket> tickets;
+    //+
+    @ManyToMany
+    @JoinTable(
+         name = "films_playbill",
+         joinColumns = @JoinColumn(name = "moviesRoom_id"),
+         inverseJoinColumns = @JoinColumn(name = "film_id")
+    )
+    private Set<Film> filmsPlaybill = new HashSet<>();
 
 
     public MoviesRoom() {
@@ -25,6 +36,14 @@ public class MoviesRoom {
         this.numberRoom = numberRoom;
         this.seats = seats;
         SoundTyp = soundTyp;
+    }
+
+    public MoviesRoom(long id, int numberRoom, int seats, String soundTyp, List<Ticket> tickets) {
+        this.id = id;
+        this.numberRoom = numberRoom;
+        this.seats = seats;
+        SoundTyp = soundTyp;
+        this.tickets = tickets;
     }
 
     public long getId() {
@@ -61,6 +80,12 @@ public class MoviesRoom {
     public MoviesRoom setSoundTyp(String soundTyp) {
         SoundTyp = soundTyp;
         return this;
+    }
+
+    //+
+
+    public void addFilmToPlaybill(Film film) {
+        filmsPlaybill.add(film);
     }
 
     @Override
