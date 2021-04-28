@@ -2,6 +2,7 @@ package pl.cinema.SilverScreen.Ticket.model;
 
 import pl.cinema.SilverScreen.Client.model.Client;
 import pl.cinema.SilverScreen.Film.Film;
+import pl.cinema.SilverScreen.MoviesRoom.MoviesRoom;
 import pl.cinema.SilverScreen.Seat.Seat;
 
 import javax.persistence.*;
@@ -22,6 +23,9 @@ public class Ticket {
     private Film film;
     @OneToOne
     private Seat seat;
+    @ManyToOne
+    @JoinColumn(name = "moviesRoom_id")
+    private MoviesRoom moviesRoom;
 
     public Ticket() {
     }
@@ -101,6 +105,14 @@ public class Ticket {
 
     public void setSeat(Seat seat) {
         this.seat = seat;
+    }
+
+    public MoviesRoom getMoviesRoom() {
+        return moviesRoom;
+    }
+
+    public void setMoviesRoom(MoviesRoom moviesRoom) {
+        this.moviesRoom = moviesRoom;
     }
 
     @Override

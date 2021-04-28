@@ -7,6 +7,7 @@ import pl.cinema.SilverScreen.Client.model.Client;
 import pl.cinema.SilverScreen.Client.ClientRepository;
 import pl.cinema.SilverScreen.Film.Film;
 import pl.cinema.SilverScreen.Film.FilmRepository;
+import pl.cinema.SilverScreen.MoviesRoom.MoviesRoom;
 import pl.cinema.SilverScreen.MoviesRoom.MoviesRoomRepository;
 import pl.cinema.SilverScreen.Seat.Seat;
 import pl.cinema.SilverScreen.Seat.SeatRepository;
@@ -39,7 +40,7 @@ public class SilverScreenApplication {
 	SeatRepository seatRepository;
 
 	@PostConstruct
-	public void test1() {
+	public void testTicketManyToOneClient() {
 
 		Ticket ticket1 = ticketRepository.save(new Ticket(0, 15, 20));
 		Ticket ticket2 = ticketRepository.save(new Ticket(0, 20, 35));
@@ -58,31 +59,48 @@ public class SilverScreenApplication {
 	}
 
 	@PostConstruct
-	public void test2() {
+	public void testTicketManyToOneFilm() {
 
-		Ticket ticket4 = ticketRepository.save(new Ticket(0, 100, 5.55));
-		Ticket ticket5 = ticketRepository.save(new Ticket(0, 110, 10.55));
-		Ticket ticket6 = ticketRepository.save(new Ticket(0, 120, 15.55));
+		Ticket ticket1 = ticketRepository.save(new Ticket(0, 100, 5.55));
+		Ticket ticket2 = ticketRepository.save(new Ticket(0, 110, 10.55));
+		Ticket ticket3 = ticketRepository.save(new Ticket(0, 120, 15.55));
 
 		Film film1 = filmRepository.save(
-				new Film(0, "Forrest Gump", "Thom Hanks",1994, 123, List.of(ticket4, ticket5, ticket6))
+				new Film(0, "Forrest Gump", "Thom Hanks",1994, 123, List.of(ticket1, ticket2, ticket3))
 		);
 
-		ticket4.setFilm(film1);
-		ticket5.setFilm(film1);
-		ticket6.setFilm(film1);
-		ticketRepository.save(ticket4);
-		ticketRepository.save(ticket5);
-		ticketRepository.save(ticket6);
+		ticket1.setFilm(film1);
+		ticket2.setFilm(film1);
+		ticket3.setFilm(film1);
+		ticketRepository.save(ticket1);
+		ticketRepository.save(ticket2);
+		ticketRepository.save(ticket3);
 	}
 
 	@PostConstruct
-	public void test3() {
+	public void testTicketOneToOneSeat() {
 
 		Seat seat1 = seatRepository.save(new Seat(0, 1, false));
-		Ticket ticket7 = ticketRepository.save(new Ticket(0, 1001, 35.8, seat1));
+		Ticket ticket1 = ticketRepository.save(new Ticket(0, 1001, 35.8, seat1));
 
-		seat1.setTicket(ticket7);
+		seat1.setTicket(ticket1);
 		seatRepository.save(seat1);
+	}
+
+	@PostConstruct
+	public void testTicketManyToOneMoviesRoom() {
+
+		Ticket ticket1 = ticketRepository.save(new Ticket(0, 5, 50));
+		Ticket ticket2 = ticketRepository.save(new Ticket(0, 50, 50));
+		Ticket ticket3 = ticketRepository.save(new Ticket(0, 70, 70.5));
+
+		MoviesRoom moviesRoom1 = moviesRoomRepository.save(new MoviesRoom(0, 1, 120, "3D"));
+
+		ticket1.setMoviesRoom(moviesRoom1);
+		ticket2.setMoviesRoom(moviesRoom1);
+		ticket3.setMoviesRoom(moviesRoom1);
+		ticketRepository.save(ticket1);
+		ticketRepository.save(ticket2);
+		ticketRepository.save(ticket3);
 	}
 }
