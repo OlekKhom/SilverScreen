@@ -27,6 +27,14 @@ public class MoviesRoom {
         SoundTyp = soundTyp;
     }
 
+    public MoviesRoom(long id, int numberRoom, int seats, String soundTyp, List<Ticket> tickets) {
+        this.id = id;
+        this.numberRoom = numberRoom;
+        this.seats = seats;
+        SoundTyp = soundTyp;
+        this.tickets = tickets;
+    }
+
     public long getId() {
         return id;
     }
