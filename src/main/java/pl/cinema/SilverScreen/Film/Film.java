@@ -1,9 +1,13 @@
 package pl.cinema.SilverScreen.Film;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import pl.cinema.SilverScreen.MoviesRoom.MoviesRoom;
 import pl.cinema.SilverScreen.Ticket.model.Ticket;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Film {
@@ -16,6 +20,9 @@ public class Film {
     private int timeFilmsMinute;
     @OneToMany
     List<Ticket> tickets;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "filmsPlaybill")
+    private Set<MoviesRoom> moviesRooms = new HashSet<>();
 
     public Film() {
     }

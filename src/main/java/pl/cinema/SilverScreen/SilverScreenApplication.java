@@ -94,7 +94,7 @@ public class SilverScreenApplication {
 		Ticket ticket2 = ticketRepository.save(new Ticket(0, 50, 50));
 		Ticket ticket3 = ticketRepository.save(new Ticket(0, 70, 70.5));
 
-		MoviesRoom moviesRoom1 = moviesRoomRepository.save(new MoviesRoom(0, 1, 120, "3D"));
+		MoviesRoom moviesRoom1 = moviesRoomRepository.save(new MoviesRoom(0, 1, 120, "3D", List.of(ticket1, ticket2, ticket3)));
 
 		ticket1.setMoviesRoom(moviesRoom1);
 		ticket2.setMoviesRoom(moviesRoom1);
