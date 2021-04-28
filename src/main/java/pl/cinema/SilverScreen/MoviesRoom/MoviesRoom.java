@@ -1,9 +1,9 @@
 package pl.cinema.SilverScreen.MoviesRoom;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import pl.cinema.SilverScreen.Ticket.model.Ticket;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class MoviesRoom {
@@ -13,6 +13,8 @@ public class MoviesRoom {
     private int numberRoom;
     private int seats;
     private String SoundTyp;
+    @OneToMany
+    List<Ticket> tickets;
 
 
     public MoviesRoom() {
