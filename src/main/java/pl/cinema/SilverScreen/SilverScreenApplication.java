@@ -3,25 +3,33 @@ package pl.cinema.SilverScreen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import pl.cinema.SilverScreen.Client.model.Client;
 import pl.cinema.SilverScreen.Client.ClientRepository;
-import pl.cinema.SilverScreen.Film.Film;
+import pl.cinema.SilverScreen.Film.model.Film;
 import pl.cinema.SilverScreen.Film.FilmRepository;
-import pl.cinema.SilverScreen.MoviesRoom.MoviesRoom;
+import pl.cinema.SilverScreen.MoviesRoom.model.MoviesRoom;
 import pl.cinema.SilverScreen.MoviesRoom.MoviesRoomRepository;
-import pl.cinema.SilverScreen.Seat.Seat;
+import pl.cinema.SilverScreen.Seat.model.Seat;
 import pl.cinema.SilverScreen.Seat.SeatRepository;
 import pl.cinema.SilverScreen.Ticket.model.Ticket;
 import pl.cinema.SilverScreen.Ticket.TicketRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
-public class SilverScreenApplication {
+public class SilverScreenApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SilverScreenApplication.class, args);
+	}
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(SilverScreenApplication.class);
 	}
 
 	@Autowired
@@ -102,5 +110,25 @@ public class SilverScreenApplication {
 		ticketRepository.save(ticket1);
 		ticketRepository.save(ticket2);
 		ticketRepository.save(ticket3);
+	}
+
+	@PostConstruct
+	public void testFilmManyToManyMoviesRoom() {
+
+		Film film1 = filmRepository.save(
+				new Film(0, "Interstellar", "Matthew McConaughey",2014, 142)
+		);
+		Film film2 = filmRepository.save(
+				new Film(0, "Green book", "Viggo Mortensen",2018, 115)
+		);
+
+		MoviesRoom moviesRoom1 = moviesRoomRepository.save(new MoviesRoom(0, 1, 120, "3D"));
+		MoviesRoom moviesRoom2 = moviesRoomRepository.save(new MoviesRoom(0, 2, 100, "3D"));
+
+		film1.setMoviesRooms(Set.of(moviesRoom1));
+		film2.setMoviesRooms(Set.of(moviesRoom2));
+
+		filmRepository.save(film1);
+		filmRepository.save(film2);
 	}
 }

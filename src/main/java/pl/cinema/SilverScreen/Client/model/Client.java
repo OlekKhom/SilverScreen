@@ -13,7 +13,7 @@ public class Client {
     private long id;
     private String name;
     private int password;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Ticket> tickets;
 
     public Client() {
@@ -54,5 +54,66 @@ public class Client {
 
     public void setPassword(int password) {
         this.password = password;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password=" + password +
+                ", tickets=" + tickets +
+                '}';
+    }
+
+    public static ClientBuilder builder() {
+        return new ClientBuilder();
+    }
+
+    public static final class ClientBuilder {
+        List<Ticket> tickets;
+        private long id;
+        private String name;
+        private int password;
+
+        private ClientBuilder() {
+        }
+
+        public ClientBuilder id(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public ClientBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public ClientBuilder password(int password) {
+            this.password = password;
+            return this;
+        }
+
+        public ClientBuilder tickets(List<Ticket> tickets) {
+            this.tickets = tickets;
+            return this;
+        }
+
+        public Client build() {
+            Client client = new Client();
+            client.setId(id);
+            client.setName(name);
+            client.setPassword(password);
+            client.setTickets(tickets);
+            return client;
+        }
     }
 }

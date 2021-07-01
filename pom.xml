@@ -8,6 +8,7 @@
 		<version>2.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<packaging>war</packaging>
 	<groupId>pl.cinema</groupId>
 	<artifactId>SilverScreen</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -49,6 +50,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<finalName>SilverScreenCinema</finalName>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

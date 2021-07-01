@@ -1,9 +1,9 @@
 package pl.cinema.SilverScreen.Ticket.model;
 
 import pl.cinema.SilverScreen.Client.model.Client;
-import pl.cinema.SilverScreen.Film.Film;
-import pl.cinema.SilverScreen.MoviesRoom.MoviesRoom;
-import pl.cinema.SilverScreen.Seat.Seat;
+import pl.cinema.SilverScreen.Film.model.Film;
+import pl.cinema.SilverScreen.MoviesRoom.model.MoviesRoom;
+import pl.cinema.SilverScreen.Seat.model.Seat;
 
 import javax.persistence.*;
 
@@ -15,15 +15,15 @@ public class Ticket {
     private long id;
     private int number;
     private double price;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "film_id")
     private Film film;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Seat seat;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "moviesRoom_id")
     private MoviesRoom moviesRoom;
 
@@ -55,6 +55,16 @@ public class Ticket {
         this.number = number;
         this.price = price;
         this.seat = seat;
+    }
+
+    public Ticket(long id, int number, double price, Client client, Film film, Seat seat, MoviesRoom moviesRoom) {
+        this.id = id;
+        this.number = number;
+        this.price = price;
+        this.client = client;
+        this.film = film;
+        this.seat = seat;
+        this.moviesRoom = moviesRoom;
     }
 
     public long getId() {
@@ -136,6 +146,7 @@ public class Ticket {
         private Client client;
         private Film film;
         private Seat seat;
+        private MoviesRoom moviesRoom;
 
         private TicketBuilder() {
         }
@@ -170,6 +181,11 @@ public class Ticket {
             return this;
         }
 
+        public TicketBuilder moviesRoom(MoviesRoom moviesRoom) {
+            this.moviesRoom = moviesRoom;
+            return this;
+        }
+
         public Ticket build() {
             Ticket ticket = new Ticket();
             ticket.setId(id);
@@ -178,6 +194,7 @@ public class Ticket {
             ticket.setClient(client);
             ticket.setFilm(film);
             ticket.setSeat(seat);
+            ticket.setMoviesRoom(moviesRoom);
             return ticket;
         }
     }

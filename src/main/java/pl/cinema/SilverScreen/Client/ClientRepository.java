@@ -6,4 +6,8 @@ import pl.cinema.SilverScreen.Client.model.Client;
 
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Long> {
+
+    boolean existsByName(String name);
+    boolean deleteByName(String name);
+    boolean findByName(String name);
 }

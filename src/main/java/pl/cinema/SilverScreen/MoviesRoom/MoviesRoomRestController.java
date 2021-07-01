@@ -2,20 +2,45 @@ package pl.cinema.SilverScreen.MoviesRoom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.cinema.SilverScreen.Film.Film;
-import pl.cinema.SilverScreen.Film.FilmRepository;
+import pl.cinema.SilverScreen.MoviesRoom.model.MoviesRoomHttpRequest;
+import pl.cinema.SilverScreen.MoviesRoom.model.MoviesRoomHttpResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class MoviesRoomRestController {
 
     @Autowired
-    MoviesRoomRepository moviesRoomRepository;
+    MoviesRoomService moviesRoomService;
 
     @Autowired
-    FilmRepository filmRepository; //+
+    public MoviesRoomRestController(MoviesRoomService moviesRoomService) {
+        this.moviesRoomService = moviesRoomService;
+    }
+
+    @GetMapping("/moviesRooms/{id}")
+    public MoviesRoomHttpResponse getMoviesRoom(@PathVariable long id) {
+        return moviesRoomService.getMoviesRoom(id);
+    }
+
+    @GetMapping("/moviesRooms")
+    public List<MoviesRoomHttpResponse> getAllMoviesRooms() {
+        return moviesRoomService.getAllMoviesRooms();
+    }
+
+    @PostMapping("/moviesRooms")
+    public String create(@RequestBody MoviesRoomHttpRequest request) {
+        return moviesRoomService.create(request);
+    }
+
+    @PutMapping("/moviesRoom/{id}")
+    public String update(@PathVariable long id, @RequestBody MoviesRoomHttpRequest request) {
+        return moviesRoomService.update(id, request);
+    }
+}
+
+/*@Autowired
+    FilmRepository filmRepository;
 
     @GetMapping("/moviesRoom/{id}")
     public String MoviesRoomGet(@PathVariable int id) {
@@ -42,6 +67,4 @@ public class MoviesRoomRestController {
         Film film = filmRepository.findById(filmId).get();
         moviesRoom.addFilmToPlaybill(film);
         return moviesRoomRepository.save(moviesRoom);
-    }
-
-}
+    }*/
