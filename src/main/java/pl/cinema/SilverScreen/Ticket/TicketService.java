@@ -42,10 +42,6 @@ public class TicketService {
         return false;
     }
 
-    public long countAllByNumber(int number) {
-        return ticketRepository.countAllByNumber(number);
-    }
-
     public TicketHttpResponse getTicket(long id) {
         Ticket ticket = ticketRepository.findById(id).get();
         TicketHttpResponse responseTicket = TicketMapper.map(ticket);

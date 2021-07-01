@@ -2,29 +2,53 @@ package pl.cinema.SilverScreen.Client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.cinema.SilverScreen.Client.model.Client;
+import pl.cinema.SilverScreen.Client.model.ClientHttpRequest;
 import pl.cinema.SilverScreen.Client.model.ClientHttpResponse;
-import pl.cinema.SilverScreen.Client.model.ClientMapper;
+
+import java.util.List;
 
 
 @RestController
 public class ClientRestController {
 
     @Autowired
-    ClientRepository clientRepository;
+    ClientService clientService;
 
-    /*
+    @Autowired
+    public ClientRestController(ClientService clientService) {
+        this.clientService = clientService;
+    }
 
-    @GetMapping("/client/{id}")
+    @GetMapping("/clients/{id}")
+    public ClientHttpResponse getClient(@PathVariable long id) {
+        return clientService.getClient(id);
+    }
+
+    @GetMapping("/clients")
+    public List<ClientHttpResponse> getAllClients() {
+        return clientService.getAllClients();
+    }
+
+    @PostMapping("/clients")
+    public String create(@RequestBody ClientHttpRequest request) {
+        return clientService.create(request);
+    }
+
+    @PutMapping("/client/{id}")
+    public String update(@PathVariable long id, @RequestBody ClientHttpRequest request) {
+        return clientService.update(id, request);
+    }
+}
+
+
+    /*@GetMapping("/client/{id}")
     public ClientHttpResponse getClient(@PathVariable long id) {
         Client client = clientRepository.findById(id).get();
         ClientHttpResponse response = ClientMapper.map(client);
         return response;
     }
 
-     */
 
-    /*
 
     @PutMapping("/client/{name}")
     public String clientDetails(@PathVariable String name, @RequestParam int password) {
@@ -42,4 +66,3 @@ public class ClientRestController {
     }
 
      */
-}

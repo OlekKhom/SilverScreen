@@ -12,5 +12,4 @@ public interface TicketRepository extends CrudRepository<Ticket, Long>{
     boolean existsByNumber(int number);
     boolean deleteByNumber(int number);
     boolean findByNumber(int number);
-    long countAllByNumber(int number);
 }

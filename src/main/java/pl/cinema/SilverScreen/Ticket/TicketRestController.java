@@ -2,20 +2,15 @@ package pl.cinema.SilverScreen.Ticket;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.cinema.SilverScreen.Client.model.Client;
-import pl.cinema.SilverScreen.Client.model.ClientHttpResponse;
-import pl.cinema.SilverScreen.Client.model.ClientMapper;
-import pl.cinema.SilverScreen.MoviesRoom.MoviesRoom;
-import pl.cinema.SilverScreen.Ticket.model.Ticket;
 import pl.cinema.SilverScreen.Ticket.model.TicketHttpRequest;
 import pl.cinema.SilverScreen.Ticket.model.TicketHttpResponse;
-import pl.cinema.SilverScreen.Ticket.model.TicketMapper;
 
 import java.util.List;
 
 @RestController
 public class TicketRestController {
 
+    @Autowired
     TicketService ticketService;
 
     @Autowired
@@ -34,14 +29,15 @@ public class TicketRestController {
     }
 
     @PostMapping("/tickets")
-    public String create (@RequestBody TicketHttpRequest request) {
+    public String create(@RequestBody TicketHttpRequest request) {
         return ticketService.create(request);
     }
 
     @PutMapping("/ticket/{id}")
-    public String update (@PathVariable long id, @RequestBody TicketHttpRequest request) {
-        return  ticketService.update(id, request);
+    public String update(@PathVariable long id, @RequestBody TicketHttpRequest request) {
+        return ticketService.update(id, request);
     }
+}
 
 
 
@@ -56,4 +52,3 @@ public class TicketRestController {
     }
 
      */
-}

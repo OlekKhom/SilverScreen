@@ -1,14 +1,14 @@
 package pl.cinema.SilverScreen.Client.model;
 
-import pl.cinema.SilverScreen.Ticket.model.Ticket;
+import pl.cinema.SilverScreen.Ticket.model.TicketHttpResponse;
 
-import java.util.List;
 
 public class ClientHttpResponse {
 
     private long id;
     private String name;
     private int password;
+    private TicketHttpResponse ticket;
 
     public ClientHttpResponse(long id, String name, int password) {
         this.id = id;
@@ -40,21 +40,26 @@ public class ClientHttpResponse {
         this.password = password;
     }
 
+    public TicketHttpResponse getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(TicketHttpResponse ticket) {
+        this.ticket = ticket;
+    }
+
     public static ClientHttpResponseBuilder builder() {
         return new ClientHttpResponseBuilder();
     }
 
-
     public static final class ClientHttpResponseBuilder {
-        List<Ticket> tickets;
         private long id;
         private String name;
         private int password;
+        private TicketHttpResponse ticket;
 
         private ClientHttpResponseBuilder() {
         }
-
-
 
         public ClientHttpResponseBuilder id(long id) {
             this.id = id;
@@ -71,11 +76,14 @@ public class ClientHttpResponse {
             return this;
         }
 
-
+        public ClientHttpResponseBuilder ticket(TicketHttpResponse ticket) {
+            this.ticket = ticket;
+            return this;
+        }
 
         public ClientHttpResponse build() {
             ClientHttpResponse clientHttpResponse = new ClientHttpResponse(id, name, password);
-            //clientHttpResponse.setTickets(tickets);
+            clientHttpResponse.setTicket(ticket);
             return clientHttpResponse;
         }
     }
